@@ -1,0 +1,13 @@
+Service:
+  Address: 127.0.0.1
+  Port: 55043
+  BasePath: /
+  LogFile: ./logs/service.log
+Mail:
+  TemplateDir: ./templates
+  Account: test@example.com
+  Password: password123456
+  SendServer: smtp.exmail.qq.com
+  SendServerPort: 465
+  ReceiveServer: imap.exmail.qq.com
+  ReceiveServerPort: 993
