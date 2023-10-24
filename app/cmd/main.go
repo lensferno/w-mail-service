@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/yitter/idgenerator-go/idgen"
 	"gopkg.in/natefinch/lumberjack.v2"
 	v1 "mail-service/app/api/http"
 	"mail-service/app/conf"
@@ -15,7 +14,6 @@ func main() {
 	// config加载必须在最先位置
 	loadConfig()
 
-	setupIdGenerator()
 	setupLogger()
 
 	ecode.InitEcodeText()
@@ -28,12 +26,6 @@ func loadConfig() {
 	if confErr := conf.Init(); confErr != nil {
 		panic(confErr)
 	}
-}
-
-func setupIdGenerator() {
-	// 暂时写死workerId为8，要改以后机器扩容了再说
-	options := idgen.NewIdGeneratorOptions(8)
-	idgen.SetIdGenerator(options)
 }
 
 func setupLogger() {

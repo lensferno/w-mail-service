@@ -35,16 +35,6 @@ func (s *Service) SendMail(mailSendData model.MailSendData) (err error) {
 		template = string(templateData)
 	}
 
-	//templateParams := map[string]interface{}{
-	//	"code": code,
-	//	"sign": "sign",
-	//	"date": date,
-	//}
-	//
-	//mailText, err := s.templateEngine.Exec(template, mailSendData.TemplateContent, &contract.Option{
-	//	Debug: true,
-	//})
-
 	tmpl, err := pongo2.FromString(template)
 	if err != nil {
 		log.Error("读取邮件模板时出错", zap.Error(err))
@@ -62,7 +52,7 @@ func (s *Service) SendMail(mailSendData model.MailSendData) (err error) {
 		return err
 	}
 
-	m.Subject("请接收您的验证码")
+	m.Subject("请验证您的验证码")
 	m.SetBodyString(mail.TypeTextHTML, mailText)
 	if err = s.mail.DialAndSend(m); err != nil {
 		log.Error("发送邮件时出错", zap.Error(err))

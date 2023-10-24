@@ -4,12 +4,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"mail-service/app/conf"
 	"mail-service/app/service"
-	"mail-service/library/token"
 )
 
 var (
 	serv *service.Service
-	jwt  *token.Token
 )
 
 func NewEngine(c *conf.Config, basePath string) *gin.Engine {

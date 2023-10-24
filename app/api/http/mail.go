@@ -34,5 +34,5 @@ func sendMail(c *gin.Context) {
 		return
 	}
 
-	response(c, ecode.OK.Code(), "", nil)
+	response(c, ecode.OK.Code(), "ok", nil)
 }
