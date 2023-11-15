@@ -20,10 +20,10 @@ func New(c *conf.Config) (service *Service, err error) {
 	client, err := mail.NewClient(
 		c.Mail.SendServer,
 		mail.WithPort(c.Mail.SendServerPort),
-		mail.WithSMTPAuth(mail.SMTPAuthLogin),
+		mail.WithSMTPAuth(mail.SMTPAuthPlain),
 		mail.WithUsername(c.Mail.Account),
 		mail.WithPassword(c.Mail.Password),
-		mail.WithSSL(),
+		//mail.WithSSL(),
 	)
 
 	if err != nil {

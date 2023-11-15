@@ -52,7 +52,7 @@ func (s *Service) SendMail(mailSendData model.MailSendData) (err error) {
 		return err
 	}
 
-	m.Subject("请验证您的验证码")
+	m.Subject("请确认您的验证码")
 	m.SetBodyString(mail.TypeTextHTML, mailText)
 	if err = s.mail.DialAndSend(m); err != nil {
 		log.Error("发送邮件时出错", zap.Error(err))

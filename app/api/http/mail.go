@@ -9,8 +9,8 @@ import (
 )
 
 func sendMail(c *gin.Context) {
-	req := new(model.MailRequest)
-	err := c.BindJSON(req)
+	req := map[string]string{}
+	err := c.BindJSON(&req)
 	if err != nil {
 		log.Error("邮件发送请求参数解析失败", zap.String("err", err.Error()))
 		response(c, ecode.ParamWrong.Code(), "param wrong", nil)
@@ -18,13 +18,9 @@ func sendMail(c *gin.Context) {
 	}
 
 	data := model.MailSendData{
-		Target:     req.Email,
-		TemplateId: req.EmailType,
-		TemplateContent: map[string]string{
-			"code": req.Code,
-			"date": req.Date,
-			"sign": req.Sign,
-		},
+		Target:          req["email"],
+		TemplateId:      req["emailType"],
+		TemplateContent: req,
 	}
 
 	err = serv.SendMail(data)
